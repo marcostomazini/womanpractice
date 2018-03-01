@@ -32,8 +32,8 @@ module.exports = {
 				'public/lib/underscore/underscore-min.js'
 			]
 		},
-		css: 'public/dist/application.min.css',
-		js: 'public/dist/application.min.js'
+		css: 'public/dist/application.min.css'
+		//js: 'public/dist/application.min.js'
 	},
 	google: {
 		clientID: process.env.GOOGLE_ID || 'APP_ID',
