@@ -2,13 +2,13 @@
 
 module.exports = {
 	app: {
-		title: 'Leilão - Sistema para Leilão',
-		description: 'Leilão',
-		keywords: 'leilao, carro, veiculos'
+		title: 'Mulher Prática',
+		description: 'Servicos para mulheres',
+		keywords: 'mulheres, servicos'
 	},
 	port: process.env.PORT || 3000,
 	templateEngine: 'swig',
-	sessionSecret: 'ARQUITETAWEB2015',
+	sessionSecret: 'ARQUITETAWEB2018',
 	sessionCollection: 'sessions',
 	assets: {
 		lib: {

@@ -22,13 +22,13 @@
 		
 		<form role="form" ng-submit="signin()" name="loginForm" novalidate="" class="form-validate mb-lg">
 			<div class="form-group has-feedback">
-			   <input id="email" type="email" name="account_email" placeholder="Enter email" autocomplete="off" ng-model="credentials.username" required class="form-control" />
+			   <input id="email" type="email" name="account_email" placeholder="Digite seu email" autocomplete="off" ng-model="credentials.username" required class="form-control" />
 			   <span class="fa fa-envelope form-control-feedback text-muted"></span>
 			   <span ng-show="loginForm.account_email.$dirty &amp;&amp; loginForm.account_email.$error.required" class="text-danger">Campo obrigatório</span>
 			   <span ng-show="loginForm.account_email.$dirty &amp;&amp; loginForm.account_email.$error.email" class="text-danger">Digite um email válido</span>
 			</div>
 			<div class="form-group has-feedback">
-			   <input id="exampleInputPassword1" type="password" name="account_password" placeholder="Password" ng-model="credentials.password" required class="form-control" />
+			   <input id="exampleInputPassword1" type="password" name="account_password" placeholder="Digite sua senha" ng-model="credentials.password" required class="form-control" />
 			   <span class="fa fa-lock form-control-feedback text-muted"></span>
 			   <span ng-show="loginForm.account_password.$dirty &amp;&amp; loginForm.account_password.$error.required" class="text-danger">Campo obrigatório</span>
 			</div>
