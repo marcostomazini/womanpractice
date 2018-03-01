@@ -6,8 +6,8 @@ angular.module('users').controller('AuthenticationController', ['$scope', '$http
 
 		// If user is signed in then redirect back home
 		if ($scope.authentication.user) $location.path('/home');
-
-		$scope.signup = function() {
+		
+		$scope.signup = function() {			
 			if($scope.registerForm.$valid) {
 				$scope.credentials.username = $scope.credentials.email;
 				$http.post('/auth/signup', $scope.credentials).success(function(response) {
@@ -25,6 +25,7 @@ angular.module('users').controller('AuthenticationController', ['$scope', '$http
 				$scope.registerForm.account_email.$dirty = true;
 				$scope.registerForm.account_password.$dirty = true;
 				$scope.registerForm.account_password_confirm.$dirty = true;
+				$scope.registerForm.account_agreed.$dirty = true;
 			}
 		};
 
@@ -38,8 +39,7 @@ angular.module('users').controller('AuthenticationController', ['$scope', '$http
 					$location.path('/home');
 				}).error(function(response) {
 					$scope.error = response.message;
-					console.log(response.message);
-					
+					console.log(response);					
 				});
 			} else {
 				// set as dirty if the user click directly to login so we show the validation messages

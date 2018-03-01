@@ -10,7 +10,7 @@ module.exports = function(app) {
 	var users = require('../../app/controllers/users.server.controller');
 
 	// Setting up the users profile api
-	app.route('/users/me').get(users.me);
+	app.route('/users/me').get(users.me);	
 	app.route('/users').put(users.update);
 	app.route('/users/accounts').delete(users.removeOAuthProvider);
 
@@ -34,7 +34,9 @@ module.exports = function(app) {
 	}));
 	app.route('/auth/google/callback').get(users.oauthCallback('google'));	
 
-	app.route('/api/usuarios-sistema')
+	app.route('/api/users/count').get(users.requiresLogin, users.count);
+	
+	app.route('/api/users')
 		.get(users.requiresLogin, users.list);
 
 	// Finish by binding the user middleware

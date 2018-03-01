@@ -71,6 +71,27 @@ exports.list = function(req, res) {
 };
 
 /**
+ * Quantidade de usuarios
+ */
+exports.count = function(req, res) {	
+	User.count().exec(function(err, qtde) {
+		if (err) {
+			return res.status(400).send({
+				message: errorHandler.getErrorMessage(err)
+			});
+		} else {
+			var counters = { 
+				users: qtde,
+				fornecedores: 10,
+				cadastros: 20
+			};
+
+			res.json(counters);
+		}
+	});
+};
+
+/**
  * Send User
  */
 exports.me = function(req, res) {	

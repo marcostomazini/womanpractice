@@ -51,14 +51,14 @@
 						<td>{{ item.email }}</td>
 
 						<td>
-							<div class="label label-warning" ng-if="item.ativo == null">Recém cadastrado</div>
-							<div class="label label-danger" ng-if="!item.ativo">Inativo</div>
-							<div class="label label-success" ng-if="item.ativo">Liberado</div>						
+							<div class="label label-warning" ng-if="item.active == null">Recém cadastrado</div>
+							<div class="label label-danger" ng-if="!item.active">Inativo</div>
+							<div class="label label-success" ng-if="item.active">Liberado</div>						
 						</td>
 
 						<td class="text-center">
 							<label class="switch">
-								<input type="checkbox" ng-model="item.ativo" checked="checked"><span></span>
+								<input type="checkbox" ng-model="item.active" checked="checked"><span></span>
 							</label>
 						</td>
 

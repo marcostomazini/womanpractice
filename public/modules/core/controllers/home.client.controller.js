@@ -1,13 +1,17 @@
 'use strict';
 
-angular.module('app.core').controller('HomeController', ['$scope', 'Authentication', 'Veiculos',
-	function($scope, Authentication, Veiculos) {
-		
-		Veiculos.quantidade.get().$promise.then(function(data) {
-				$scope.veiculos  =data;
-		});
+angular.module('app.core').controller('HomeController', ['$scope', '$q', 'Authentication', 'UsuariosSistema',
+	function($scope, $q, Authentication, UsuariosSistema) {
+		var counters = { 
+			users: 0,
+			fornecedores: 0,
+			cadastros: 0
+		};
 
-		var aasd = Veiculos.quantidade.get();
-		//$scope.veiculos = Veiculos.quantidade.get();
+		$scope.contadores = counters;
+		
+		UsuariosSistema.quantidade.get().$promise.then(function(data) {
+			$scope.contadores = data;			
+		});
 	}
 ]);

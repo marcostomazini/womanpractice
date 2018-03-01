@@ -44,14 +44,14 @@ var UserSchema = new Schema({
 		trim: true,
 		default: ''
 	},
-  	ativo: { 
+  	active: { 
   		type: Boolean, 
   		//default: null // quando entrar em producao deve vir por padrao null
   		default: true
   	}, 
 	username: {
 		type: String,
-		//unique: 'Já existe um usuário cadastrado',
+		unique: 'Já existe um usuário cadastrado',
 		required: 'Username é obrigatório',
 		trim: true
 	},

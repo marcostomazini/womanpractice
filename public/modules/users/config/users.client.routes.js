@@ -18,6 +18,18 @@ angular.module('users').config(['$stateProvider', 'RouteHelpersProvider',
 			url: '/password/forgot',
 			templateUrl: 'modules/users/views/password/forgot-password.client.view.html'
 		}).
+		state('page.recover', {
+			url: '/password/recover',
+			templateUrl: 'modules/users/views/password/recover-password.client.view.html'
+		}).
+		state('page.recover-invalid', {
+			url: '/password/recover/invalid',
+			templateUrl: 'modules/users/views/password/recover-password-invalid.client.view.html'
+		}).
+		state('page.recover-success', {
+			url: '/password/recover/success',
+			templateUrl: 'modules/users/views/password/recover-password-success.client.view.html'
+		}).
 		state('page.reset-invalid', {
 			url: '/password/reset/invalid',
 			templateUrl: 'modules/users/views/password/reset-password-invalid.client.view.html'

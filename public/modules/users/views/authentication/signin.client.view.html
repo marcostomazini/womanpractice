@@ -19,7 +19,7 @@
 		</div>
 
 		<p class="text-center pv">OU</p> -->
-		
+		<div ng-show="error" class="alert alert-danger text-center">{{error}}</div>
 		<form role="form" ng-submit="signin()" name="loginForm" novalidate="" class="form-validate mb-lg">
 			<div class="form-group has-feedback">
 			   <input id="email" type="email" name="account_email" placeholder="Digite seu email" autocomplete="off" ng-model="credentials.username" required class="form-control" />
@@ -43,16 +43,15 @@
 			</div>
 			<button type="submit" class="btn btn-block btn-primary mt-lg">Entrar</button>
 			<!-- <button type="submit" class="btn btn-block btn-danger mt-lg">Entrar com sua conta Google</button> -->
-
 			<a href="/auth/google" class="btn btn-block btn-labeled btn-danger">
 				<span class="btn-label">
 					<i class="fa fa-google-plus"></i>
-				</span>Entrar com sua conta Google		
+				</span>
+				Entrar com sua conta Google				
 			</a>
 
-		</form>
-		<div ng-show="authMsg" class="alert alert-danger text-center">{{authMsg}}</div>
-			<p class="pt-lg text-center">Não tem registro?</p><a ui-sref="page.signup" class="btn btn-block btn-default">Registre Agora</a>
+		</form>	
+		<p class="pt-lg text-center">Não tem registro?</p><a ui-sref="page.signup" class="btn btn-block btn-default">Registre Agora</a>
 		</div>
    </div>
    <!-- END panel-->

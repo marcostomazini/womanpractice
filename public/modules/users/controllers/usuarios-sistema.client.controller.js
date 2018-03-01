@@ -28,7 +28,7 @@ angular.module('users').controller('UsuarioSistemaController', ['$scope', '$stat
 
 		// Context
 		$scope.authentication = Authentication;
-		$scope.usuariosMobile = UsuariosSistema.query();
+		$scope.usuariosMobile = UsuariosSistema.usuarios.query();
 
 		$scope.deleteConfirm = function(index) {
 			noty({
