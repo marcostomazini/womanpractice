@@ -1,10 +1,10 @@
 {
-  "name": "unimarketing",
+  "name": "arquitetaweb",
   "version": "1.0.0",
   "authors": [
     "@marcos_tomazini"
   ],
-  "description": "UniMarketing",
+  "description": "ArquitetaWeb",
   "main": "index.html",
   "keywords": [
     "bootstrap",

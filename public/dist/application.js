@@ -3,7 +3,7 @@
 // Init the application configuration module for AngularJS application
 var ApplicationConfiguration = (function() {
 	// Init module configuration options
-	var applicationModuleName = 'unimarketingApp';
+	var applicationModuleName = 'arquitetaWebApp';
 
 	var applicationModuleVendorDependencies = ['ngRoute',
 												 'ngAnimate',
@@ -409,15 +409,19 @@ angular.module('app.core').controller('HeaderController', ['$scope', 'Authentica
 ]);
 'use strict';
 
-angular.module('app.core').controller('HomeController', ['$scope', 'Authentication', 'Veiculos',
-	function($scope, Authentication, Veiculos) {
-		
-		Veiculos.quantidade.get().$promise.then(function(data) {
-				$scope.veiculos  =data;
-		});
+angular.module('app.core').controller('HomeController', ['$scope', '$q', 'Authentication', 'UsuariosSistema',
+	function($scope, $q, Authentication, UsuariosSistema) {
+		var counters = { 
+			users: 0,
+			fornecedores: 0,
+			cadastros: 0
+		};
 
-		var aasd = Veiculos.quantidade.get();
-		//$scope.veiculos = Veiculos.quantidade.get();
+		$scope.contadores = counters;
+		
+		UsuariosSistema.quantidade.get().$promise.then(function(data) {
+			$scope.contadores = data;			
+		});
 	}
 ]);
 'use strict';
@@ -1528,6 +1532,18 @@ angular.module('users').config(['$stateProvider', 'RouteHelpersProvider',
 			url: '/password/forgot',
 			templateUrl: 'modules/users/views/password/forgot-password.client.view.html'
 		}).
+		state('page.recover', {
+			url: '/password/recover',
+			templateUrl: 'modules/users/views/password/recover-password.client.view.html'
+		}).
+		state('page.recover-invalid', {
+			url: '/password/recover/invalid',
+			templateUrl: 'modules/users/views/password/recover-password-invalid.client.view.html'
+		}).
+		state('page.recover-success', {
+			url: '/password/recover/success',
+			templateUrl: 'modules/users/views/password/recover-password-success.client.view.html'
+		}).
 		state('page.reset-invalid', {
 			url: '/password/reset/invalid',
 			templateUrl: 'modules/users/views/password/reset-password-invalid.client.view.html'
@@ -1568,8 +1584,8 @@ angular.module('users').controller('AuthenticationController', ['$scope', '$http
 
 		// If user is signed in then redirect back home
 		if ($scope.authentication.user) $location.path('/home');
-
-		$scope.signup = function() {
+		
+		$scope.signup = function() {			
 			if($scope.registerForm.$valid) {
 				$scope.credentials.username = $scope.credentials.email;
 				$http.post('/auth/signup', $scope.credentials).success(function(response) {
@@ -1587,6 +1603,7 @@ angular.module('users').controller('AuthenticationController', ['$scope', '$http
 				$scope.registerForm.account_email.$dirty = true;
 				$scope.registerForm.account_password.$dirty = true;
 				$scope.registerForm.account_password_confirm.$dirty = true;
+				$scope.registerForm.account_agreed.$dirty = true;
 			}
 		};
 
@@ -1600,8 +1617,7 @@ angular.module('users').controller('AuthenticationController', ['$scope', '$http
 					$location.path('/home');
 				}).error(function(response) {
 					$scope.error = response.message;
-					console.log(response.message);
-					
+					console.log(response);					
 				});
 			} else {
 				// set as dirty if the user click directly to login so we show the validation messages
@@ -1756,7 +1772,7 @@ angular.module('users').controller('UsuarioSistemaController', ['$scope', '$stat
 
 		// Context
 		$scope.authentication = Authentication;
-		$scope.usuariosMobile = UsuariosSistema.query();
+		$scope.usuariosMobile = UsuariosSistema.usuarios.query();
 
 		$scope.deleteConfirm = function(index) {
 			noty({
@@ -1827,14 +1843,19 @@ angular.module('users').factory('Users', ['$resource',
 
 //Articles service used for communicating with the articles REST endpoints
 angular.module('users').factory('UsuariosSistema', ['$resource',
+
 	function($resource) {
-		return $resource('api/usuarios-sistema/:usuarioSistemaId', {
-			usuarioSistemaId: '@_id'
-		}, {
-			update: {
-				method: 'PUT'
-			}
-		});
+
+		var Quantidade = $resource('api/users/count');
+
+		var Usuarios = $resource('api/users/:usuarioSistemaId', 
+			{ usuarioSistemaId: '@_id' }, 
+			{ update: { method: 'PUT' } });
+    	
+    	return {
+    		usuarios: Usuarios,
+    		quantidade: Quantidade
+    	};
 	}
 ]);
 'use strict';
@@ -1843,8 +1864,8 @@ angular.module('users').factory('UsuariosSistema', ['$resource',
 angular.module('usuarios-mobile').run(['Menus',
 	function(Menus) {
 		// Set top bar menu items
-		Menus.addMenuItem('sidebar', 'Leilões', 'usuarios-mobile', 'dropdown', '/usuarios-mobile(/.*)?', false, null, 20, 'icon-users');
-		Menus.addSubMenuItem('sidebar', 'usuarios-mobile', 'Listar leilões', 'usuarios-mobile');
+		//Menus.addMenuItem('sidebar', 'Leilões', 'usuarios-mobile', 'dropdown', '/usuarios-mobile(/.*)?', false, null, 20, 'icon-users');
+		//Menus.addSubMenuItem('sidebar', 'usuarios-mobile', 'Listar leilões', 'usuarios-mobile');
 	}
 ]);
 'use strict';
@@ -2443,7 +2464,7 @@ angular.module('usuarios-mobile').factory('UsuariosMobile', ['$resource',
 angular.module('veiculos').run(['Menus',
 	function(Menus) {
 		// Set top bar menu items
-		Menus.addMenuItem('sidebar', 'Veiculos', 'pesquisa-veiculos', 'dropdown', '/pesquisa-veiculos(/.*)?', false, null, 20, 'icon-basket-loaded');
+		//Menus.addMenuItem('sidebar', 'Veiculos', 'pesquisa-veiculos', 'dropdown', '/pesquisa-veiculos(/.*)?', false, null, 20, 'icon-basket-loaded');
 	}
 ]);
 'use strict';
