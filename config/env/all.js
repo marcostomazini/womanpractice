@@ -6,6 +6,16 @@ module.exports = {
 		description: 'Servicos para mulheres',
 		keywords: 'mulheres, servicos'
 	},
+	mailer: {
+		from: process.env.MAILER_FROM || 'MAILER_FROM',
+		options: {
+		  service: process.env.MAILER_SERVICE_PROVIDER || 'gmail',
+		  auth: {
+		    user: process.env.MAILER_EMAIL_ID || 'arquitetaweb@gmail.com',
+		    pass: process.env.MAILER_PASSWORD || 'MAILER_PASSWORD'
+		  }
+		}
+	},
 	port: process.env.PORT || 3000,
 	templateEngine: 'swig',
 	sessionSecret: 'ARQUITETAWEB2018',

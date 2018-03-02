@@ -33,11 +33,11 @@ exports.forgot = function(req, res, next) {
 				}, '-salt -password', function(err, user) {
 					if (!user) {
 						return res.status(400).send({
-							message: 'No account with that username has been found'
+							message: 'Nenhuma conta com esse email foi encontrada.'
 						});
 					} else if (user.provider !== 'local') {
 						return res.status(400).send({
-							message: 'It seems like you signed up using your ' + user.provider + ' account'
+							message: 'Parece que você se registrou usando sua conta do ' + user.provider + ' !!'
 						});
 					} else {
 						user.resetPasswordToken = token;
@@ -50,7 +50,7 @@ exports.forgot = function(req, res, next) {
 				});
 			} else {
 				return res.status(400).send({
-					message: 'Username field must not be blank'
+					message: 'O email é obrigatório'
 				});
 			}
 		},
@@ -69,13 +69,13 @@ exports.forgot = function(req, res, next) {
 			var mailOptions = {
 				to: user.email,
 				from: config.mailer.from,
-				subject: 'Password Reset',
+				subject: 'Recuperar Senha',
 				html: emailHTML
 			};
 			smtpTransport.sendMail(mailOptions, function(err) {
 				if (!err) {
 					res.send({
-						message: 'An email has been sent to ' + user.email + ' with further instructions.'
+						message: 'Um email foi enviado para ' + user.email + ' com mais instruções.'
 					});
 				}
 
@@ -91,6 +91,7 @@ exports.forgot = function(req, res, next) {
  * Reset password GET from email token
  */
 exports.validateResetToken = function(req, res) {
+	console.log(req.params.token);
 	User.findOne({
 		resetPasswordToken: req.params.token,
 		resetPasswordExpires: {
@@ -98,10 +99,10 @@ exports.validateResetToken = function(req, res) {
 		}
 	}, function(err, user) {
 		if (!user) {
-			return res.redirect('/#!/password/reset/invalid');
+			return res.redirect('/#!/page/password/reset/invalid');
 		}
 
-		res.redirect('/#!/password/reset/' + req.params.token);
+		res.redirect('/#!/page/password/reset/' + req.params.token);
 	});
 };
 
@@ -152,7 +153,7 @@ exports.reset = function(req, res, next) {
 					}
 				} else {
 					return res.status(400).send({
-						message: 'Password reset token is invalid or has expired.'
+						message: 'O token de redefinição de senha é inválido ou expirou.'
 					});
 				}
 			});
@@ -171,7 +172,7 @@ exports.reset = function(req, res, next) {
 			var mailOptions = {
 				to: user.email,
 				from: config.mailer.from,
-				subject: 'Your password has been changed',
+				subject: 'Sua senha foi alterada',
 				html: emailHTML
 			};
 

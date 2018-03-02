@@ -10,7 +10,8 @@
             <div class="panel-heading">
                Usuários Sistema |
                <small>lista de usuário do sistema</small>
-            </div>
+            </div>            
+
             <div class="panel-body">
 
 		    	<table id="grid-usuarios-mobile" datatable="ng" dt-options="ctrl.dtOptions" dt-column-defs="ctrl.dtColumnDefs" class="table table-striped table-bordered">
@@ -53,7 +54,7 @@
 						<td>
 							<div class="label label-warning" ng-if="item.active == null">Recém cadastrado</div>
 							<div class="label label-danger" ng-if="!item.active">Inativo</div>
-							<div class="label label-success" ng-if="item.active">Liberado</div>						
+							<div class="label label-success" ng-if="item.active">Liberado</div>			
 						</td>
 
 						<td class="text-center">
@@ -64,7 +65,7 @@
 
 					</tr>
 					</tbody>
-				</table>
+				</table>				
 
 			</div>
          </div>
