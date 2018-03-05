@@ -18,10 +18,16 @@ angular.module('users').controller('UsuarioSistemaController', ['$scope', '$stat
 				.newColumnDef(0)
 				.withOption('bSearchable', false)
 				.notVisible()
-				.notSortable(),
+				.notSortable()
+				.withOption('width', '19%'),
 	        DTColumnDefBuilder
 	        	.newColumnDef(1)
-	        	.notSortable()
+	        	.notSortable(),
+        	DTColumnDefBuilder.newColumnDef(3)
+        		.withOption('width', '15%'),
+        	DTColumnDefBuilder.newColumnDef(4)
+        		.notSortable()
+        		.withOption('width', '20%')
 		];	
 
 		$scope.urlBase = '/#!/usuarios-sistema';

@@ -1,0 +1,39 @@
+<div class="block-center mb-lg mt-xl col-xs-12 col-sm-12 col-md-12 col-lg-12">
+	<div class="row ng-scope">
+		<div class="col-md-12"><!-- START panel-->
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<div class="container container-md">
+						<div class="row mb-lg">
+						  <div class="col-md-8">
+						     <div class="h1 text-bold">LOGOTIPO</div>
+						     <p class="text-muted">Mulher Prática</p>
+						  </div>      
+						</div>
+						<div class="col-md-8">
+							<div class="h1 text-bold">Bem vindo(a), proponente</div>
+							<p class="text-muted">Agradecemos o seu interesse em fazer parte da rede de prestadores de serviços do {{app.description}}.</p>
+							<br/>		
+
+							<p class="text-muted">O processo de credencimanto é composto pelas seguintes etapas:</p>
+							<p class="text-muted">1) Cadastro de proponente.</p>
+							<p class="text-muted">2)....</p>
+
+							<a class="btn btn-labeled btn-success" ui-sref="page.cadastro"><span class="btn-label"><i class="fa fa-check"></i></span>Sim, quero continuar.</a>
+
+							<a class="btn btn-labeled btn-purple btn-danger" ui-sref="page.cancelar"><span class="btn-label"><i class="fa fa-check"></i></span>Cancelar</a>
+						</div>				 
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="p-lg text-center">
+		<span>&copy;</span>
+		<span ng-bind="app.year"></span>
+		<span>-</span>
+		<span ng-bind="app.name"></span>
+		<br/>
+		<span ng-bind="app.description"></span>
+	</div>
+</div>

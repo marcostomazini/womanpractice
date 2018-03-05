@@ -77,6 +77,10 @@ angular.element(document).ready(function() {
         ]);
 
 })();
+'use strict';
+
+// Use Applicaion configuration module to register a new module
+ApplicationConfiguration.registerModule('fornecedor');
 (function() {
     'use strict';
 
@@ -602,6 +606,46 @@ angular.module('app.core').service('Menus', [
 angular.module('app.core').factory('mySocket', ["socketFactory", function(socketFactory) {
     return socketFactory();
 }]);
+'use strict';
+
+// Setting up route
+angular.module('page').config(['$stateProvider', 'RouteHelpersProvider',
+	function($stateProvider, helper) {
+		// state routing
+		$stateProvider.  
+		state('page.bemvindo', {
+      		url: '/bemvindo',
+      		templateUrl: 'modules/fornecedores/views/bemvindo-fornecedor.client.view.html',
+          resolve: helper.resolveFor('modernizr', 'icons', 'toaster')
+    	}).
+      state('page.cadastro', {
+        url: '/cadastro',
+        controller: 'WelcomeController',
+        templateUrl: 'modules/fornecedores/views/inserir-fornecedor.client.view.html',
+        resolve: helper.resolveFor('modernizr', 'icons', 'toaster')
+      }).
+      state('page.cancelar', {
+        url: '/cancelar',
+        templateUrl: 'modules/fornecedores/views/cancelar-fornecedor.client.view.html',
+        resolve: helper.resolveFor('modernizr', 'icons', 'toaster')
+      });
+	}
+]);
+'use strict';
+
+angular.module('fornecedor').controller('WelcomeController', [
+	'$scope', 
+	'$interval',
+	'$stateParams', 
+	'$location', 
+	function($scope, 
+		$interval,
+		$stateParams, 
+		$location) {		
+
+
+	}
+]);
 (function() {
     'use strict';
 
@@ -1026,7 +1070,7 @@ angular.module('page').config(['$stateProvider',
           horizontal: false,
           isFloat: false,
           asideHover: false,
-          theme: null
+          theme: 'themes/theme-c.css'
         },
         useFullLayout: false,
         hiddenFooter: false,
@@ -1783,10 +1827,16 @@ angular.module('users').controller('UsuarioSistemaController', ['$scope', '$stat
 				.newColumnDef(0)
 				.withOption('bSearchable', false)
 				.notVisible()
-				.notSortable(),
+				.notSortable()
+				.withOption('width', '19%'),
 	        DTColumnDefBuilder
 	        	.newColumnDef(1)
-	        	.notSortable()
+	        	.notSortable(),
+        	DTColumnDefBuilder.newColumnDef(3)
+        		.withOption('width', '15%'),
+        	DTColumnDefBuilder.newColumnDef(4)
+        		.notSortable()
+        		.withOption('width', '20%')
 		];	
 
 		$scope.urlBase = '/#!/usuarios-sistema';
