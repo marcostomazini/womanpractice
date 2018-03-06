@@ -24,7 +24,10 @@
           // url: '/',
           abstract: true,
           templateUrl: 'modules/core/views/core.client.view.html',
-          resolve: helper.resolveFor('modernizr', 'icons', 'oitozero.ngSweetAlert', 'toaster', 'btford.socket-io')
+          resolve: helper.resolveFor('modernizr', 'icons', 
+            'oitozero.ngSweetAlert', 
+            'toaster', 
+            'btford.socket-io')
         })
         .state('app.home', {
           url: '/home',

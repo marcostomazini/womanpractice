@@ -1,23 +1,227 @@
 <div class="block-center mb-lg mt-xl col-xs-12 col-sm-12 col-md-12 col-lg-12">
-	<div class="row ng-scope">
-		<div class="col-md-12"><!-- START panel-->
-			<div class="panel panel-default">
-				<div class="panel-heading">
-					<div class="container container-md">
-						<div class="row mb-lg">
-						  <div class="col-md-8">
-						     <div class="h1 text-bold">LOGOTIPO</div>
-						     <p class="text-muted">Mulher Prática</p>
-						  </div>      
-						</div>
-						<div class="col-md-8">
-							<div class="h1 text-bold">CADASTRO</div>							
-						</div>				 
-					</div>
-				</div>
-			</div>
-		</div>
+	<div ng-controller="WelcomeController" class="container-fluid">
+	   <div class="row">
+	      <div class="col-md-12">
+	         <form name="formValidate" ng-submit="submitForm()" novalidate="" class="form-validate form-horizontal ng-pristine ng-invalid ng-invalid-required ng-valid-email ng-valid-pattern ng-valid-url ng-invalid-validator ng-valid-minlength ng-valid-maxlength ng-valid-blacklist ng-valid-date ng-valid-date-disabled ng-valid-time">
+	            <!-- START panel-->
+	            <div class="panel panel-default">
+					<div class="panel-body">
+
+
+						<fieldset class="b0">
+						<legend>
+						Cadastro de Proponente
+						</legend>
+						</fieldset>
+
+						<div class="row">
+
+							<div class="col-md-6">
+
+								<fieldset>
+									<div class="form-group">
+										<label class="col-sm-4 control-label">
+											Razão Social / Nome
+										</label>
+										<div class="col-sm-6">
+											<input type="text" name="name" required ng-model="cliente.nome" class="form-control ng-dirty ng-touched ng-invalid ng-invalid-required">                           
+										</div>
+									</div>
+								</fieldset>
+
+								<fieldset>
+									<div class="form-group">
+										<label class="col-sm-4 control-label">
+											Ramo de Atividade PJ
+										</label>
+										<div class="col-sm-6">
+											<input type="text" name="name" required ng-model="cliente.nome" class="form-control ng-dirty ng-touched ng-invalid ng-invalid-required">                           
+										</div>
+									</div>
+								</fieldset>
+
+								<fieldset>
+									<div class="form-group">
+										<label class="col-sm-4 control-label">
+											Inscrição Municipal
+										</label>
+										<div class="col-sm-6">
+											<input type="text" name="name" required ng-model="cliente.nome" class="form-control ng-dirty ng-touched ng-invalid ng-invalid-required">                           
+										</div>
+									</div>
+								</fieldset>
+
+								<fieldset>
+				                     <div class="form-group">
+				                        <label class="col-sm-4 control-label">
+				                           Endereço
+				                        </label>
+				                        <div class="col-sm-6">
+				                           <div class="input-group">
+				                              <ui-select 
+				                                 ng-model="cliente.endereco" 
+				                                 name="endereco" 
+				                                 ng-disabled="disabled" 
+				                                 reset-search-input="false"
+				                                 class="ng-dirty ng-touched ng-invalid">
+				                                 <ui-select-match placeholder="Digite o endereço completo...">
+				                                    {{$select.selected.formatted_address}}
+				                                 </ui-select-match>
+				                                 <ui-select-choices 
+				                                    repeat="address in addresses track by $index" 
+				                                    refresh="refreshAddresses($select.search)" 
+				                                    refresh-delay="0">
+				                                    <div ng-bind-html="address.formatted_address | highlight: $select.search"></div>
+				                                 </ui-select-choices>
+				                              </ui-select>
+				                              <span class="input-group-btn">
+				                                 <button type="button" ng-click="cliente.endereco = undefined" class="btn btn-default">
+				                                    <small>
+				                                       <em class="fa fa-times text-muted"></em>
+				                                    </small>
+				                                 </button>
+				                              </span>
+				                           </div>
+				                        </div>
+				                     </div>
+				                  </fieldset>
+
+								<fieldset>
+									<div class="form-group">
+										<label class="col-sm-4 control-label">
+											Telefone
+										</label>
+										<div class="col-sm-6">
+											<input type="text" 
+												ui-br-phone-number
+												ng-model="cliente.telefone"
+												class="form-control ng-dirty ng-touched">
+										</div>
+									</div>
+								</fieldset>
+
+								<fieldset>
+									<div class="form-group">
+										<label class="col-sm-4 control-label">
+											Conselho de Classe
+										</label>
+										<div class="col-sm-6">
+											<input type="text" 
+												ng-model="cliente.telefone"
+												class="form-control ng-dirty ng-touched">
+										</div>
+									</div>
+								</fieldset>									
+							</div>
+
+							<div class="col-md-6">							
+
+								<fieldset>
+				                     <div class="form-group">
+				                        <label class="col-sm-4 control-label">
+				                           CNPJ
+				                        </label>
+				                        <div class="col-sm-6">
+				                           <input type="text" 
+				                              ui-br-cpf-mask
+				                              required
+				                              ng-model="cliente.cpf"
+				                              class="form-control ng-dirty ng-touched ng-invalid">
+				                        </div>
+				                     </div>	                     
+				                 </fieldset>
+
+								<fieldset>
+									<div class="form-group">
+										<label class="col-sm-4 control-label">
+											Profissão PF
+										</label>
+										<div class="col-sm-6">
+											<input type="text" 
+												ng-model="cliente.telefone"
+												class="form-control ng-dirty ng-touched">
+										</div>
+									</div>
+								</fieldset>		
+
+				                  <fieldset>
+				                     <div class="form-group">
+				                        <label class="col-sm-4 control-label">
+				                           Inscrição Estadual
+				                        </label>
+				                        <div class="col-sm-6">
+				                           <input type="text" 
+				                              masked 
+				                              ng-model="cliente.rg"
+				                              data-inputmask="'mask': '9.999.999-9'" 
+				                              class="form-control ng-dirty ng-touched ng-invalid">
+				                        </div>
+				                     </div>
+				                  </fieldset>
+
+				                  <fieldset>
+				                     <div class="form-group">
+				                        <label class="col-sm-4 control-label">
+				                           Email
+				                        </label>
+				                        <div class="col-sm-6">
+				                           <input type="text" 
+				                              ng-model="cliente.email"
+				                              class="form-control ng-dirty ng-touched">
+				                        </div>
+				                     </div>
+				                  </fieldset>
+
+								<fieldset>
+									<div class="form-group">
+										<label class="col-sm-4 control-label">
+											Celular
+										</label>
+										<div class="col-sm-6">
+											<input type="text" 
+												ui-br-phone-number
+												ng-model="cliente.telefone"
+												class="form-control ng-dirty ng-touched">
+										</div>
+									</div>
+								</fieldset>
+
+								<fieldset>
+									<div class="form-group">
+										<label class="col-sm-4 control-label">
+											Número do Registro
+										</label>
+										<div class="col-sm-6">
+											<input type="text" 
+												ng-model="cliente.telefone"
+												class="form-control ng-dirty ng-touched">
+										</div>
+									</div>
+								</fieldset>
+
+				              </div>
+				          </div>
+
+		           </div>
+
+	               <div class="panel-footer text-center">
+	                  <div class="text-right mt-lg">
+	                     <button type="button" class="btn btn-warning">
+	                        Cancelar
+	                     </button>
+	                     <button type="submit" class="btn btn-success">
+	                        Enviar
+	                     </button>
+	                  </div>
+	               </div>
+	            <!-- END panel-->
+	         </form>
+
+	      </div>
+	   </div>
+	   <!-- END row-->
 	</div>
+
 	<div class="p-lg text-center">
 		<span>&copy;</span>
 		<span ng-bind="app.year"></span>

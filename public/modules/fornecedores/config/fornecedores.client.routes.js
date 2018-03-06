@@ -14,7 +14,7 @@ angular.module('page').config(['$stateProvider', 'RouteHelpersProvider',
         url: '/cadastro',
         controller: 'WelcomeController',
         templateUrl: 'modules/fornecedores/views/inserir-fornecedor.client.view.html',
-        resolve: helper.resolveFor('modernizr', 'icons', 'toaster')
+        resolve: helper.resolveFor('modernizr', 'icons', 'toaster', 'ui.select')
       }).
       state('page.cancelar', {
         url: '/cancelar',

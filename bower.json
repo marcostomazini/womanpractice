@@ -56,5 +56,8 @@
     "angular-translate": "2.6.0",
     "angular-translate-storage-cookie": "2.6.0",
     "angular-cookies": "1.4.2"
+  },
+  "devDependencies": {
+    "angular-ui-select": "^0.19.8"
   }
 }

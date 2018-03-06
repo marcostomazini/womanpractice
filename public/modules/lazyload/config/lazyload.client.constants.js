@@ -29,6 +29,8 @@
             {name: 'oitozero.ngSweetAlert',     files: ['/lib/sweetalert/dist/sweetalert.css',
                                                         '/lib/sweetalert/dist/sweetalert.min.js',
                                                         '/lib/angular-sweetalert/SweetAlert.js']},
+            { name: 'ui.select',                files: ['/lib/angular-ui-select/dist/select.js', 
+                                                        '/lib/angular-ui-select/dist/select.css']},                                                        
           ]
         })
         ;
