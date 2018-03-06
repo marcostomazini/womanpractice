@@ -12,7 +12,7 @@ angular.module('fornecedor').controller('WelcomeController', [
 		$location,
 		ArquitetaWeb) {		
 
-		$scope.cliente = {};
+		$scope.cadastro = {};
 
 		$scope.refreshAddresses = function(address) {
 			ArquitetaWeb.carregaEndereco(address).then(function(response) {	    

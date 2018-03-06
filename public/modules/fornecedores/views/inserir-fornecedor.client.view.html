@@ -7,7 +7,6 @@
 	            <div class="panel panel-default">
 					<div class="panel-body">
 
-
 						<fieldset class="b0">
 						<legend>
 						Cadastro de Proponente
@@ -24,7 +23,7 @@
 											Razão Social / Nome
 										</label>
 										<div class="col-sm-6">
-											<input type="text" name="name" required ng-model="cliente.nome" class="form-control ng-dirty ng-touched ng-invalid ng-invalid-required">                           
+											<input type="text" name="name" required ng-model="cadastro.razao_social" class="form-control ng-dirty ng-touched ng-invalid ng-invalid-required">                           
 										</div>
 									</div>
 								</fieldset>
@@ -35,7 +34,7 @@
 											Ramo de Atividade PJ
 										</label>
 										<div class="col-sm-6">
-											<input type="text" name="name" required ng-model="cliente.nome" class="form-control ng-dirty ng-touched ng-invalid ng-invalid-required">                           
+											<input type="text" name="name" required ng-model="cadastro.ramo_atividade" class="form-control ng-dirty ng-touched ng-invalid ng-invalid-required">                           
 										</div>
 									</div>
 								</fieldset>
@@ -46,7 +45,7 @@
 											Inscrição Municipal
 										</label>
 										<div class="col-sm-6">
-											<input type="text" name="name" required ng-model="cliente.nome" class="form-control ng-dirty ng-touched ng-invalid ng-invalid-required">                           
+											<input type="text" name="name" required ng-model="cadastro.inscricao_municipal" class="form-control ng-dirty ng-touched ng-invalid ng-invalid-required">                           
 										</div>
 									</div>
 								</fieldset>
@@ -59,7 +58,7 @@
 				                        <div class="col-sm-6">
 				                           <div class="input-group">
 				                              <ui-select 
-				                                 ng-model="cliente.endereco" 
+				                                 ng-model="cadastro.endereco" 
 				                                 name="endereco" 
 				                                 ng-disabled="disabled" 
 				                                 reset-search-input="false"
@@ -75,7 +74,7 @@
 				                                 </ui-select-choices>
 				                              </ui-select>
 				                              <span class="input-group-btn">
-				                                 <button type="button" ng-click="cliente.endereco = undefined" class="btn btn-default">
+				                                 <button type="button" ng-click="cadastro.endereco = undefined" class="btn btn-default">
 				                                    <small>
 				                                       <em class="fa fa-times text-muted"></em>
 				                                    </small>
@@ -94,7 +93,7 @@
 										<div class="col-sm-6">
 											<input type="text" 
 												ui-br-phone-number
-												ng-model="cliente.telefone"
+												ng-model="cadastro.telefone"
 												class="form-control ng-dirty ng-touched">
 										</div>
 									</div>
@@ -107,14 +106,14 @@
 										</label>
 										<div class="col-sm-6">
 											<input type="text" 
-												ng-model="cliente.telefone"
+												ng-model="cadastro.conselho_classe"
 												class="form-control ng-dirty ng-touched">
 										</div>
 									</div>
 								</fieldset>									
 							</div>
 
-							<div class="col-md-6">							
+							<div class="col-md-6">
 
 								<fieldset>
 				                     <div class="form-group">
@@ -125,7 +124,7 @@
 				                           <input type="text" 
 				                              ui-br-cpf-mask
 				                              required
-				                              ng-model="cliente.cpf"
+				                              ng-model="cadastro.cnpj"
 				                              class="form-control ng-dirty ng-touched ng-invalid">
 				                        </div>
 				                     </div>	                     
@@ -138,7 +137,7 @@
 										</label>
 										<div class="col-sm-6">
 											<input type="text" 
-												ng-model="cliente.telefone"
+												ng-model="cadastro.profissao"
 												class="form-control ng-dirty ng-touched">
 										</div>
 									</div>
@@ -152,7 +151,7 @@
 				                        <div class="col-sm-6">
 				                           <input type="text" 
 				                              masked 
-				                              ng-model="cliente.rg"
+				                              ng-model="cadastro.inscricao_estadual"
 				                              data-inputmask="'mask': '9.999.999-9'" 
 				                              class="form-control ng-dirty ng-touched ng-invalid">
 				                        </div>
@@ -162,11 +161,11 @@
 				                  <fieldset>
 				                     <div class="form-group">
 				                        <label class="col-sm-4 control-label">
-				                           Email
+				                           Complemento
 				                        </label>
 				                        <div class="col-sm-6">
 				                           <input type="text" 
-				                              ng-model="cliente.email"
+				                              ng-model="cadastro.complemento"
 				                              class="form-control ng-dirty ng-touched">
 				                        </div>
 				                     </div>
@@ -180,7 +179,7 @@
 										<div class="col-sm-6">
 											<input type="text" 
 												ui-br-phone-number
-												ng-model="cliente.telefone"
+												ng-model="cadastro.celular"
 												class="form-control ng-dirty ng-touched">
 										</div>
 									</div>
@@ -193,28 +192,45 @@
 										</label>
 										<div class="col-sm-6">
 											<input type="text" 
-												ng-model="cliente.telefone"
+												ng-model="cadastro.numero_registro"
 												class="form-control ng-dirty ng-touched">
 										</div>
 									</div>
 								</fieldset>
 
 				              </div>
-				          </div>
+				        	</div>
 
-		           </div>
+				        	<div class="col-md-12">
+				        		<fieldset>
+				                     <div class="form-group">
+				                        <label class="col-sm-2 control-label">
+				                           Observações:
+				                        </label>
+				                        <div class="col-sm-9">
+				                        	<textarea class="form-control note-editor ng-dirty ng-touched ng-invalid"
+				                        		required 
+				                        		ng-model="cadastro.observacoes"
+				                        		rows="5">
+				                        	</textarea>
+				                        </div>
+				                     </div>	                     
+				                 </fieldset>				        		
+				        	</div>
 
-	               <div class="panel-footer text-center">
-	                  <div class="text-right mt-lg">
-	                     <button type="button" class="btn btn-warning">
-	                        Cancelar
-	                     </button>
-	                     <button type="submit" class="btn btn-success">
-	                        Enviar
-	                     </button>
-	                  </div>
-	               </div>
-	            <!-- END panel-->
+			           </div>
+
+		               <div class="panel-footer text-center">
+		                  <div class="text-right mt-lg">
+		                     <button type="button" class="btn btn-warning">
+		                        Cancelar
+		                     </button>
+		                     <button type="submit" class="btn btn-success">
+		                        Enviar
+		                     </button>
+		                  </div>
+		               </div>
+		            <!-- END panel-->
 	         </form>
 
 	      </div>
